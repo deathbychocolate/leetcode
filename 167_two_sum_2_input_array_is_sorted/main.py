@@ -10,7 +10,7 @@ class Solution:
         while c1 <= len(numbers) - 2:
             c2 = c1 + 1
             while c2 <= len(numbers) - 1:
-                if num1 == numbers[c1] and num1 == numbers[c2]:
+                if num1 == numbers[c1] and num1 == numbers[c2]:  # if the next iteration has the same digits, skip.
                     break
                 num1 = numbers[c1]
                 num2 = numbers[c2]

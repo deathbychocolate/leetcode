@@ -3,22 +3,37 @@ from typing import List
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        c1 = 0
-        c2 = 1
-        num1: int | None = None
-        num2: int | None = None
-        while c1 <= len(numbers) - 2:
-            c2 = c1 + 1
-            while c2 <= len(numbers) - 1:
-                if num1 == numbers[c1] and num1 == numbers[c2]:  # if the next iteration has the same digits, skip.
-                    break
-                num1 = numbers[c1]
-                num2 = numbers[c2]
-                if num1 + num2 == target:
-                    return [c1 + 1, c2 + 1]
-                c2 += 1
-            c1 += 1
+
+        # O(n) algorithm.
+        l = 0
+        r = len(numbers) - 1
+        while l < r:
+            if numbers[l] + numbers[r] > target:
+                r -= 1
+            elif numbers[l] + numbers[r] < target:
+                l += 1
+            else:
+                return [l + 1, r + 1]
+
         return []
+
+        # # O(N^2) algorithm.
+        # c1 = 0
+        # c2 = 1
+        # num1: int | None = None
+        # num2: int | None = None
+        # while c1 <= len(numbers) - 2:
+        #     c2 = c1 + 1
+        #     while c2 <= len(numbers) - 1:
+        #         if num1 == numbers[c1] and num1 == numbers[c2]:  # if the next iteration has the same digits, skip.
+        #             break
+        #         num1 = numbers[c1]
+        #         num2 = numbers[c2]
+        #         if num1 + num2 == target:
+        #             return [c1 + 1, c2 + 1]
+        #         c2 += 1
+        #     c1 += 1
+        # return []
 
 
 def main() -> None:

@@ -2,21 +2,20 @@ from typing import List
 
 
 class Solution:
-    def groupAnagrams(self, words: List[str]) -> List[List[str]]:
-        words_dict: dict[int, str] = {index: word for index, word in enumerate(words)}
-        words_dict_sorted: dict[int, str] = {index: "".join(sorted(word)) for index, word in enumerate(words)}
-        words_dict_sorted_sorted = dict(sorted(words_dict_sorted.items(), key=lambda item: item[1]))
-        main_list: List[List[str]] = []
-        child_list: List[str] = []
-        for key, value in words_dict_sorted.items():
-            if not child_list:
-                child_list.append(value)
-            elif value == child_list[0]:
-                child_list.append(value)
-            else:
-                main_list.append(child_list)
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        words = ["".join(sorted(word)) for word in strs]
+        hashes = list(set(words))
+        strs_words = sorted(zip(strs, words), key=lambda x: x[1])
 
-        return [[""]]
+        groups: list[list[str]] = []
+        group: list[str] = []
+        for hash in hashes:
+            group = []
+            for strs_word in strs_words:
+                if hash == strs_word[1]:
+                    group.append(strs_word[0])
+            groups.append(group)
+        return groups
 
 
 def main() -> None:

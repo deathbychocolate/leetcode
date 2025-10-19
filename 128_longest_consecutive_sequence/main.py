@@ -10,18 +10,13 @@ class Solution:
             return len(nums)
 
         # remove duplicates
-        nums_uniq: list[int] = list(set(nums))
-
-        # bisect.insort() O(n) vs sorted() O(n^2)
-        nums_uniq_sorted: list[int] = []
-        for num in nums_uniq:
-            bisect.insort(nums_uniq_sorted, num)
+        nums_uniq: list[int] = sorted(set(nums))
 
         # find max consecutive length
         count: int = 0
         max_count: int = 0
         cur_num: int | None = None
-        for num in nums_uniq_sorted:
+        for num in nums_uniq:
             if cur_num is None or num != cur_num + 1:
                 count = 1
             else:

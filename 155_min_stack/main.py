@@ -2,34 +2,30 @@ class MinStack:
 
     def __init__(self):
         self._stack: list[tuple[int, int]] = []  # value, min-value when value was added
-        self._stack_length: int = 0
 
     def push(self, val: int) -> None:
-        if self._stack_length <= 0:
+        if len(self._stack) <= 0:
             self._stack.append((val, val))  # first val is min val
-            self._stack_length += 1
         else:
             _, mv = self._stack[-1]
             self._stack.append((val, min(val, mv)))
-            self._stack_length += 1
         return None
 
     def pop(self) -> None:
-        if self._stack_length <= 0:
+        if len(self._stack) <= 0:
             return None
         else:
             self._stack.pop()
-            self._stack_length -= 1
 
     def top(self) -> int:
-        if self._stack_length <= 0:
+        if len(self._stack) <= 0:
             return None
         else:
             v, _ = self._stack[-1]
             return v
 
     def getMin(self) -> int:
-        if self._stack_length <= 0:
+        if len(self._stack) <= 0:
             return None
         else:
             _, mv = self._stack[-1]

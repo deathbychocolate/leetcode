@@ -3,26 +3,24 @@ from typing import List
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        tokens = tokens[::-1]  # ['*', '3', '+', '1', '2']
-        operands = []
+        stack = []
         z: int | None = None
-        while len(tokens) > 0:
-            token = tokens.pop()
+        for token in tokens:
             if token.lstrip("+-").isdigit():
-                operands.append(int(token))
+                stack.append(int(token))
             else:  # token is operator, perform computation
-                x = operands.pop()
-                y = operands.pop()
+                y = stack.pop()
+                x = stack.pop()
                 if token == "/":
-                    z = int(y / x)
+                    z = int(x / y)
                 elif token == "*":
-                    z = y * x
+                    z = x * y
                 elif token == "+":
-                    z = y + x
+                    z = x + y
                 elif token == "-":
-                    z = y - x
-                operands.append(z)
-        return operands[0]
+                    z = x - y
+                stack.append(z)
+        return stack[0]
 
 
 def main() -> None:

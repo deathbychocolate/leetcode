@@ -13,6 +13,10 @@ class Solution:
                 i += 1
                 continue
 
+            # when first element is positive, break -> no possible way to get sum of 0 when sorted in ascending order
+            if nums[i] > 0:
+                break
+
             l: int = i + 1
             r: int = len(nums) - 1
             while l < r:

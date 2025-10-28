@@ -13,7 +13,7 @@ class Solution:
                 i += 1
                 continue
 
-            # when first element is positive, break -> no possible way to get sum of 0 when sorted in ascending order
+            # when first element is greater than 0, break -> no possible way to get sum of 0 when sorted in ascending order
             if nums[i] > 0:
                 break
 

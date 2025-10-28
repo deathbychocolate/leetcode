@@ -16,13 +16,21 @@ class Solution:
                     l += 1
                 else:
                     s = [nums[i], nums[l], nums[r]]
-                    if s not in sums:
-                        sums.append(s)
+                    sums.append(s)
                     l += 1
                     r -= 1
             i += 1
 
-        return sums
+        # remove duplicates
+        found: set[tuple[int, ...]] = set()
+        sums_unique: list[list[int]] = []
+        for sum in sums:
+            t = tuple(sum)
+            if t not in found:
+                found.add(t)
+                sums_unique.append(sum)
+
+        return sums_unique
 
 
 def main() -> None:

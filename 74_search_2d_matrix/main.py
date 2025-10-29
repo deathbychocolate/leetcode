@@ -5,10 +5,12 @@ class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
 
         row_count: int = len(matrix)
-        row_length_total: int = 0
-        for nums in matrix:
-            row_length_total += len(nums)
-        row_length: int = row_length_total // row_count
+        row_length: int = len(matrix[0])
+        if row_count == 0:
+            return False
+        if row_length == 0:
+            return False
+        row_length_total: int = row_count * row_length
 
         # [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
 

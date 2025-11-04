@@ -9,10 +9,14 @@ class Solution:
         area: int = 0
         area_max: int = 0
         while l < r:
+
+            # calculate max
             area = min(height[l], height[r]) * (r - l)
             if area > area_max:
                 area_max = area
-            elif height[l] >= height[r]:
+
+            # iterate through array
+            if height[l] >= height[r]:
                 r -= 1
             elif height[l] < height[r]:
                 l += 1

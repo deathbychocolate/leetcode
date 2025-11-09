@@ -1,11 +1,33 @@
 from typing import List
 from collections import Counter
-
+from collections import defaultdict
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        return [num for num, _ in Counter(nums).most_common(k)]
+        # Bucket Sort - O(n) [usually] - Worst case O(n^2) if all numbers are equal and is a large list.
+        d: defaultdict[int, int] = defaultdict(int)
+        for num in nums:
+            d[num] += 1
 
+        buckets: list[list[int]] = [[] for _ in range(len(nums) + 1)]
+        for num, count in d.items():
+            buckets[count].append(num)
+
+        result: list[int] = []
+        index: int = len(buckets) - 1
+        while index >= 0:
+            for num in buckets[index]:
+                result.append(num)
+                if len(result) == k:
+                    return result
+            index -= 1
+
+        return []
+
+        # Heap - O(klog(n))
+        # return [num for num, _ in Counter(nums).most_common(k)]
+
+        # Hash - O(n) + O(nlogn) for sorting
         # d: dict[int, int] = {}
 
         # # count elements

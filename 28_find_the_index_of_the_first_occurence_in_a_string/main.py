@@ -1,11 +1,13 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        index: int = 0
-        while index <= len(haystack) - len(needle):
-            if haystack.startswith(needle, index):
-                return index
-            index += 1
-        return -1
+        return haystack.find(needle)
+
+        # index: int = 0
+        # while index <= len(haystack) - len(needle):
+        #     if haystack.startswith(needle, index):
+        #         return index
+        #     index += 1
+        # return -1
 
 
 def main() -> None:

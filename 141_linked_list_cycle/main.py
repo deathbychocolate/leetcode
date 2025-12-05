@@ -1,16 +1,13 @@
-from typing import Optional, List, Tuple
-
-
 class ListNode:
     def __init__(self, val: int = 0, next: 'ListNode' | None = None):
         self.val = val
         self.next = next
 
 
-def build_list(vals: List[int], pos: int = -1) -> Optional[ListNode]:
+def build_list(vals: list[int], pos: int = -1) -> ListNode | None:
     if not vals:
         return None
-    nodes: List[ListNode] = []
+    nodes: list[ListNode] = []
     for v in vals:
         nodes.append(ListNode(v))
     for i in range(len(nodes) - 1):
@@ -24,7 +21,7 @@ def build_list(vals: List[int], pos: int = -1) -> Optional[ListNode]:
 
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
+    def hasCycle(self, head: ListNode | None) -> bool:
 
         # Edge cases.
         if head is None:
@@ -61,7 +58,7 @@ class Solution:
 
 def run_tests() -> None:
     # Tests: (vals, pos, expected_has_cycle)
-    tests: List[Tuple[List[int], int, bool]] = [
+    tests: list[tuple[list[int], int, bool]] = [
         # Examples from the problem
         ([3, 2, 0, -4], 1, True),      # example 1: cycle at index 1
         ([1, 2], 0, True),             # example 2: cycle at index 0

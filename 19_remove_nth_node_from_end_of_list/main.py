@@ -43,30 +43,64 @@ class Solution:
         if not head.next:  # We assume 'n' can not go beyond the list's bounds.
             return None
 
-        # Count the number of nodes.
-        node_1 = head
-        count_1 = 0
-        while node_1:
-            node_1 = node_1.next
-            count_1 += 1
+        # We can use 2 pointers. One pointed at head, and the second + n increments deep.
+        # When the second reaches null, the first will point at the node we want to remove.
+        p1 = p2 = head
 
-        # Count up to node we want to delete, count_d.
-        count_d = count_1 - n
+        # Iterate using p2.
+        count: int = 0
+        while count < n:
+            p2 = p2.next
+            count += 1
 
-        # Edge cases.
-        if count_d == 0:  # Remove head.
-            return head.next
+        # Find the node before p1.
+        prev = p1
+        while p2:
+            prev = p1
+            p1 = p1.next
+            p2 = p2.next
 
-        node_2 = head
-        prev = None
-        count_2 = 0
-        while count_2 < count_d:
-            prev = node_2
-            node_2 = node_2.next
-            count_2 += 1
-        prev.next = node_2.next
+        # Edge case, delete head if no pointers were incremented.
+        if p1 == head:
+            return prev.next
+
+        # Delete node.
+        prev.next = p1.next
 
         return head
+
+
+        # This solution requires 2 passes. Which makes it 2 * O(n); we want O(n).
+        # # Edge cases.
+        # if not head:
+        #     return head
+        # if not head.next:  # We assume 'n' can not go beyond the list's bounds.
+        #     return None
+
+        # # Count the number of nodes.
+        # node_1 = head
+        # count_1 = 0
+        # while node_1:
+        #     node_1 = node_1.next
+        #     count_1 += 1
+
+        # # Count up to node we want to delete, count_d.
+        # count_d = count_1 - n
+
+        # # Edge cases.
+        # if count_d == 0:  # Remove head.
+        #     return head.next
+
+        # node_2 = head
+        # prev = None
+        # count_2 = 0
+        # while count_2 < count_d:
+        #     prev = node_2
+        #     node_2 = node_2.next
+        #     count_2 += 1
+        # prev.next = node_2.next
+
+        # return head
 
 
 def run_test(input_list: List[int], n: int, expected: List[int], test_name: str) -> None:

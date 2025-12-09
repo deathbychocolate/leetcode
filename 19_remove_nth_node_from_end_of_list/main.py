@@ -40,7 +40,7 @@ class Solution:
         # Edge cases.
         if not head:
             return head
-        if not head.next:
+        if not head.next:  # We assume 'n' can not go beyond the list's bounds.
             return None
 
         # Count the number of nodes.

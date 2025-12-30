@@ -1,12 +1,20 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        # Bitwise Right shift solution.
+        # Optimal.
         count: int = 0
-        for _ in range(32):
-            if n & 1 == 1:
-                count += 1
-            n = n >> 1
+        while n:
+            print(n)
+            n = n & (n - 1)
+            count += 1
         return count
+
+        # # Bitwise Right shift solution.
+        # count: int = 0
+        # for _ in range(32):
+        #     if n & 1 == 1:
+        #         count += 1
+        #     n = n >> 1
+        # return count
 
 
 def run_test(n: int, expected: int) -> None:

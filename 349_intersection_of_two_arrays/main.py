@@ -2,7 +2,7 @@ from collections import defaultdict
 
 class Solution:
     def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
-        # # Optimal but shorter.
+        # Optimal but shorter.
         return list(set(nums1) & set(nums2))
 
         # # Optimal using hash set subtraction.
